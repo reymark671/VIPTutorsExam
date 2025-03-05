@@ -15,7 +15,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user() || auth()->user()->role !== 'admin') {
+        if (!auth()->user() || !auth()->user()->is_admin) {
             return redirect()->route('product_List'); //assuming that this is the product list page 
         }
         return $next($request);
